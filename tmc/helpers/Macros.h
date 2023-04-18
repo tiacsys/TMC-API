@@ -29,8 +29,14 @@
 #endif
 
 // Generic mask/shift macros
+#if defined(__ZEPHYR__) && defined(FIELD_GET)
+#undef FIELD_GET
+#endif
 #define FIELD_GET(data, mask, shift) \
 	(((data) & (mask)) >> (shift))
+#if defined(__ZEPHYR__) && defined(FIELD_SET)
+#undef FIELD_SET
+#endif
 #define FIELD_SET(data, mask, shift, value) \
 	(((data) & (~(mask))) | (((value) << (shift)) & (mask)))
 
