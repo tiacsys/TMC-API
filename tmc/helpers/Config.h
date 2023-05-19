@@ -11,6 +11,18 @@
 #include "Constants.h"
 #include "Types.h"
 
+#if defined(__ZEPHYR__) && defined(CONFIG_READY)
+#undef CONFIG_READY
+#endif
+
+#if defined(__ZEPHYR__) && defined(CONFIG_RESET)
+#undef CONFIG_RESET
+#endif
+
+#if defined(__ZEPHYR__) && defined(CONFIG_RESTORE)
+#undef CONFIG_RESTORE
+#endif
+
 // Callback functions have IC-dependent parameters
 // To store the function pointers we use this dummy type, which is never
 // called without casting it to the IC-specific type first.
